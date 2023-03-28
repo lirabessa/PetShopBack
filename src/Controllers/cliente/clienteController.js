@@ -37,7 +37,7 @@ class clienteController {
         try {
             const{id} = req.params
             const deletarCliente = await Cliente.findByIdAndDelete (id);
-            return res.status(302).json({message: "Cliente deletado :("})
+            return res.status(200).json({message: "Cliente deletado :("})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"})
         }
