@@ -48,7 +48,7 @@ class clienteController {
         try {
             const{id} = req.params          
             const atualizarCliente = await Cliente.findByIdAndUpdate (id, req.body);
-            return res.status(302).json({message: "Cliente Atualizado"})
+            return res.status(200).json({message: "Cliente Atualizado"})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"})
         }
