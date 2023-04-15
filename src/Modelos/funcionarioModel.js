@@ -20,6 +20,7 @@ const Funcionario = new Schema(
         type: String,
         required: [true, 'O campo email é obrigatório']
       },
+      password:String,
       cpf: String
 });
 

@@ -25,10 +25,19 @@ const Cliente = new Schema(
   },
   telefone:String,
   email:String,
+  password: String,
   cpf: String,
   dependentes: [Pet]
 });
 
+
+// cliente.pre("save", async function(next){
+//   if(!this.isModified("password")){
+//     next()
+//   }
+//   const salt = await bcrypt.grnSalt(10)
+//   this.password = await bcrypt.hash(this.password, salt)
+// })
 
 const Clientes = mongoose.model ('cliente', Cliente)
 

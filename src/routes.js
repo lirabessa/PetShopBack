@@ -1,6 +1,7 @@
 const {Router} = require ('express');
 const funcionarioController = require ('./Controllers/funcionario/funcionarioControler')
 const clienteController = require ('./Controllers/cliente/clienteController');
+const login = require('./Controllers/login/loginController');
 
 
 const routes = Router();
@@ -8,6 +9,8 @@ const routes = Router();
 routes.get('/', (req,res) => {
     return res.status(200).json({message: "Servidor online"})
 });
+
+routes.post('/login', login)
 
 routes.post('/funcionario' , funcionarioController.create )
 routes.get('/funcionarios' , funcionarioController.find)
