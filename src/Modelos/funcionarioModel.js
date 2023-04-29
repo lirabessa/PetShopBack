@@ -7,8 +7,8 @@ const Funcionario = new Schema(
     {
       idFunc: ObjectId,
       nomeFunc: String,
-      endereço:{
-        rua:String,
+      endereco:{
+        rua: String,
         bairro: String,
         cidade:String,
         estado:String,

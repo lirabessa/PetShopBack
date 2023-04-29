@@ -15,7 +15,7 @@ const Cliente = new Schema(
     {
   idCli: ObjectId,
   nomeCli: String,
-  endereço:{
+  endereco:{
     rua:String,
     bairro: String,
     cidade:String,

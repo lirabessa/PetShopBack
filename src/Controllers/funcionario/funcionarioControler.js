@@ -42,10 +42,47 @@ class funcionarioController {
 
     async update (req , res){
         try {
-            const {id} = req.params;
-            const updateFuncionario = await Funcionarios.findByIdAndUpdate (id, req.body);
-            return res.status(200).json({message: "Funcionario atualizado"})
-        } catch (error) {
+            const id = req.params.id;
+            const {nomeFunc, rua, bairro, cidade, estado,pais, cep , telefone, email, cpf } = req.body
+            const updateFuncionario = await Funcionarios.findById (id);
+            console.log(updateFuncionario);
+            if (updateFuncionario){
+                if (nomeFunc){
+                    updateFuncionario.nomeFunc = nomeFunc
+                }
+                if(rua){
+                    updateFuncionario.endereco.rua = rua
+                }
+                if(bairro){
+                    updateFuncionario.endereco.bairro = bairro
+                }
+                if(cidade){
+                    updateFuncionario.endereco.cidade = cidade
+                }
+                if(estado){
+                    updateFuncionario.endereco.estado = estado
+                }
+                if(pais){
+                    updateFuncionario.endereco.pais = pais
+                }
+                if(cep){
+                    updateFuncionario.endereco.cep = cep
+                }
+                if(telefone){
+                    updateFuncionario.telefone = telefone
+                }
+                if(email){
+                    updateFuncionario.email = email
+                }
+                if(cpf){
+                    updateFuncionario.cpf = cpf
+                }
+            
+                await updateFuncionario.save()
+                return res.status(200).json({message: "Funcionario atualizado", updateFuncionario})
+            } 
+        }catch (error) {
+            console.log(error);
             res.status(404).json({message: "Não encontrado"}) 
         }
     }
