@@ -41,9 +41,19 @@ class ProdutoController{
 
     async update(req,res){
         try {
-            const {id} = req.params
-            const atualizarProduto = await Produtos.findByIdAndUpdate(id)
-            return res.status(200).json({message:"Produto atualizado :("})
+            const {id} = req.params.id
+            const {nomeProd, preco} = req.body
+            const atualizarProduto = await Produtos.findById(id)
+            if(atualizarProduto){
+                if(nomeProd){
+                    atualizarProduto.nomeProd = nomeProd
+                }
+                if(preco){
+                    atualizarProduto.preco = preco
+                }
+                await atualizarProduto.save()
+                return res.status(200).json({message:"Produto atualizado :("})
+            }
         } catch (error) {
             res.status(404).json({message: "Não encontrado"}) 
         }
