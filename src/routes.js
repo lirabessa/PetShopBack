@@ -28,7 +28,7 @@ routes.delete('/cliente/:id' , clienteController.destroy)
 routes.put('/cliente/:id' , clienteController.update)
 
 routes.post('/produto', produtoController.create)
-routes.get('/produto' , produtoController.find)
+routes.get('/produtos' , produtoController.find)
 routes.get('/produto/:id' , produtoController.findOne)
 routes.delete('/produto/:id' , produtoController.destroy)
 routes.put('/produto/:id' , produtoController.update)

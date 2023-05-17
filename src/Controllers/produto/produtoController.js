@@ -23,7 +23,7 @@ class ProdutoController{
     async find (req,res){
         try {
             const readProdutos = await Produtos.find()
-            return res.status(302).json({message: 'Não encontrado'})
+            return res.status(302).json({readProdutos})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"}) 
         }
@@ -52,7 +52,7 @@ class ProdutoController{
                     atualizarProduto.preco = preco
                 }
                 await atualizarProduto.save()
-                return res.status(200).json({message:"Produto atualizado :("})
+                return res.status(200).json({message:"Produto atualizado :(", atualizarProduto})
             }
         } catch (error) {
             res.status(404).json({message: "Não encontrado"}) 
