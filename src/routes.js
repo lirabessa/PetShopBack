@@ -4,6 +4,7 @@ const clienteController = require ('./Controllers/cliente/clienteController');
 const login = require('./Controllers/login/loginController');
 const uploadController = require ('./Controllers/uploads/uploadsController')
 const upload = require ('./config/multer')
+const produtoController = require('./Controllers/produto/produtoController')
 
 
 const routes = Router();
@@ -25,6 +26,12 @@ routes.get('/clientes' , clienteController.find)
 routes.get('/cliente/:id' , clienteController.findOne)
 routes.delete('/cliente/:id' , clienteController.destroy)
 routes.put('/cliente/:id' , clienteController.update)
+
+routes.post('/produto', produtoController.create)
+routes.get('/produto' , produtoController.find)
+routes.get('/produto/:id' , produtoController.findOne)
+routes.delete('/produto/:id' , produtoController.destroy)
+routes.put('/produto/:id' , produtoController.update)
 
 routes.post('/uploads', upload.single("File"), uploadController.create)
 routes.get('/uploads' , uploadController.findAll)
