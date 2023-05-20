@@ -4,8 +4,8 @@ const Picture = require("../../Modelos/uploadModel");
 exports.create = async (req, res) => {
   try {
     const { name } = req.body;
-
-    const file = req.file;
+    
+    const file = req.body.File;
     const picture = new Picture({
       name,
       src: file.path,
@@ -14,6 +14,7 @@ exports.create = async (req, res) => {
     await picture.save();
     res.json(picture);
   } catch (err) {
+    
     res.status(500).json({ message: "Erro ao salvar a imagem :(" });
   }
 };
