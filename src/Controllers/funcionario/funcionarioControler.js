@@ -4,7 +4,7 @@ class funcionarioController {
     async create (req, res){
         try {
             const criarFuncionario = await Funcionarios.create(req.body);
-        return res.status(201).json({message: "Funcionario criado :)"});
+        return res.status(201).json({message: "Funcionario criado :)", criarFuncionario});
         } catch (error) {
             res.status(500).json({message: "erro"})
         }

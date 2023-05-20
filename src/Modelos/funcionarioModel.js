@@ -1,4 +1,5 @@
-const mongoose = require ('mongoose')
+const mongoose = require ('mongoose');
+const uploadModel = require('./uploadModel');
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
@@ -21,7 +22,11 @@ const Funcionario = new Schema(
         required: [true, 'O campo email é obrigatório']
       },
       password:String,
-      cpf: String
+      cpf: String,
+      foto:{
+        ref: uploadModel,
+        type:mongoose.Types.ObjectId
+      }
 });
 
 const Funcionarios = mongoose.model ('funcionario', Funcionario)

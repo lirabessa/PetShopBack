@@ -5,7 +5,7 @@ class clienteController {
 
         try {
         const criarCliente = await Cliente.create(req.body);
-        return res.status(201).json({message:"Cliente criado :)"});
+        return res.status(201).json({message:"Cliente criado :)", criarCliente});
         } catch (error) {
             res.status(500).json({message: "erro"})
         }

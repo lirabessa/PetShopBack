@@ -1,18 +1,12 @@
-const mongoose = require ('mongoose')
+const mongoose = require ('mongoose');
+const uploadModel = require('./uploadModel');
+const Pet = require ('./petModel')
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const Pet = new Schema(
-  {
-    idPet: ObjectId,
-    nomeDep: String,
-    raca: String
-  }
-);
-
 const Cliente = new Schema(
-    {
+{
   idCli: ObjectId,
   nomeCli: String,
   endereco:{
@@ -27,7 +21,11 @@ const Cliente = new Schema(
   email:String,
   password: String,
   cpf: String,
-  dependentes: [Pet]
+  dependentes: [Pet],
+  foto:{
+    ref: uploadModel,
+    type:mongoose.Types.ObjectId
+  }
 });
 
 

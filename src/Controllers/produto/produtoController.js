@@ -4,7 +4,7 @@ class ProdutoController{
     async create (req, res){
         try {
             const criarProduto = await Produtos.create(req.body)
-            return res.status(201).json({message: "Produto criado"})
+            return res.status(201).json({message: "Produto criado", criarProduto})
         } catch (error) {
             res.status (500).json ({message: 'erro'})
         }

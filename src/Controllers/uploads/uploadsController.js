@@ -1,17 +1,36 @@
 const fs = require("fs");
 const Picture = require("../../Modelos/uploadModel");
+const Cliente = require('../../Modelos/clienteModel')
+const Funcionario = require ('../../Modelos/funcionarioModel');
+const Pet = require("../../Modelos/petModel");
 
 exports.create = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name,tipo,id } = req.body;
     
     const file = req.body.File;
     const picture = new Picture({
       name,
       src: file.path,
     });
+    
+    const result = await picture.save();
+    let target;
+    switch(tipo){
+      case 'cliente': 
+        target = await Cliente.findById(id);
+        break
+      case 'funcionario':
+        target = await Funcionario.findById(id);
+        break;
+      case 'pet':
+        target = await Pet.findById(id);
+        break;
+    }
 
-    await picture.save();
+    target.foto = result._id
+    target.save()
+
     res.json(picture);
   } catch (err) {
     
