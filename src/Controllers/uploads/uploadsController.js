@@ -7,17 +7,19 @@ const Pet = require("../../Modelos/petModel");
 exports.create = async (req, res) => {
   try {
     const { name,tipo,id } = req.body;
-    
-    const file = req.body.File;
+    const file = req.file;
     const picture = new Picture({
       name,
-      src: file.path,
+      src: file.destination,
     });
+    
     
     const result = await picture.save();
     let target;
+    console.log(tipo);
     switch(tipo){
       case 'cliente': 
+      console.log('sua tiaaaaa');
         target = await Cliente.findById(id);
         break
       case 'funcionario':
@@ -33,7 +35,7 @@ exports.create = async (req, res) => {
 
     res.json(picture);
   } catch (err) {
-    
+    console.log(err);
     res.status(500).json({ message: "Erro ao salvar a imagem :(" });
   }
 };

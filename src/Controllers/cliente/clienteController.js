@@ -26,7 +26,7 @@ class clienteController {
 
         try {
             const{id} = req.params
-            const readCliente = await Cliente.findById(id);
+            const readCliente = await Cliente.findById(id).populate('foto');
             return res.status(302).json({readCliente})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"})
