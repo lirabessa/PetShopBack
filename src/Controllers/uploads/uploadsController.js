@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
     console.log(tipo);
     switch(tipo){
       case 'cliente': 
-      console.log('sua tiaaaaa');
+      
         target = await Cliente.findById(id);
         break
       case 'funcionario':
