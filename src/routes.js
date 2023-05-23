@@ -34,6 +34,7 @@ routes.get('/produtos' , produtoController.find)
 routes.get('/produto/:id' , produtoController.findOne)
 routes.delete('/produto/:id' , produtoController.destroy)
 routes.put('/produto/:id' , produtoController.update)
+routes.post('produtoCli', authenticate, produtoController.createProdInCli)
 
 routes.post('/uploads', upload.single("File"), uploadController.create)
 routes.get('/uploads' , uploadController.findAll)
