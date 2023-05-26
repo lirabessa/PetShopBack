@@ -11,21 +11,6 @@ class ProdutoController{
         }
     }
 
-    async createProdInCli (req,res){
-        try {
-            const idCliente = res.locals.jwtPayload._id
-            const cliente = await Clientes.findById(idCliente)
-            const idProd = res.locals.jwtPayload._id
-            const produto = await Produtos.findById(idProd)
-            cliente.produtos.push(req.body)
-            await cliente.save()
-            console.log(cliente);
-            return res.status(201).json({message: "CliProd", cliente})
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({message: "erro"})
-        }
-    }
 
     async findOne (req, res){
         try {

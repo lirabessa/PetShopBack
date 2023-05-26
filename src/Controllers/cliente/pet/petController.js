@@ -4,6 +4,7 @@ const Pet = require ('../../../Modelos/petModel')
 class PetController {
     async create (req,res){
         try {
+        
             const idCliente  = res.locals.jwtPayload._id
             const cliente = await Clientes.findById(idCliente)
             cliente.dependentes.push(req.body)
