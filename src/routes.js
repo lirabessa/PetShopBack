@@ -44,4 +44,7 @@ routes.get('/pets', authenticate, petController.find)
 routes.delete('/pet/:id', authenticate, petController.delete)
 
 routes.post('/carrinho/:id', authenticate, carrinhoController.create)
+routes.delete('/carrinho/:id', authenticate, carrinhoController.delete)
+routes.get('/carrinhos', authenticate, carrinhoController.find)
+
 module.exports = routes;
