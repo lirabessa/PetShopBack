@@ -7,7 +7,8 @@ const upload = require ('./config/multer')
 const produtoController = require('./Controllers/produto/produtoController');
 const { authenticate } = require('./middleware');
 const petController = require ('./Controllers/cliente/pet/petController')
-const carrinhoController = require ('./Controllers/cliente/carrinhoCli')
+const carrinhoController = require ('./Controllers/produto/carrinhoCli');
+const fichaMedicaController = require('./Controllers/cliente/pet/fichaMedicaPet');
 
 const routes = Router();
 
@@ -46,5 +47,7 @@ routes.delete('/pet/:id', authenticate, petController.delete)
 routes.post('/carrinho/:id', authenticate, carrinhoController.create)
 routes.delete('/carrinho/:id', authenticate, carrinhoController.delete)
 routes.get('/carrinhos', authenticate, carrinhoController.find)
+
+routes.post ('/fichaMedica/:id', authenticate , fichaMedicaController.create)
 
 module.exports = routes;

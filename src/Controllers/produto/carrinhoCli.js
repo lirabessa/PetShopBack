@@ -37,7 +37,7 @@ class CarrinhoController{
     async find (req, res){
         try {    
             const idCliente  = res.locals.jwtPayload._id
-            const cliente = await Clientes.findById(idCliente).populate('produtos foto').exec(); 
+            const cliente = await Clientes.findById(idCliente).populate('fichaMedica produtos foto').exec(); 
             return res.status(302).json(cliente.produtos)
         } catch (error) {
             res.status(500).json({ message: "Produto não encontrado :(" });
