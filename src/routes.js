@@ -37,7 +37,7 @@ routes.delete('/produto/:id' , produtoController.destroy)
 routes.put('/produto/:id' , produtoController.update)
 
 routes.post('/uploads', upload.single("File"), uploadController.create)
-routes.post('/drive', uploadDrive.single("File"), uploadController.createDrive)
+routes.post('/drive',authenticate, uploadDrive.single("File"), uploadController.createDrive)
 routes.get('/uploads' , uploadController.findAll)
 routes.delete('/uploads' , uploadController.remove)
 

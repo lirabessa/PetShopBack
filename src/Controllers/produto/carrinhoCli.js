@@ -1,6 +1,6 @@
 const Produtos = require ('../../Modelos/produtoModel')
 const Clientes = require ('../../Modelos/clienteModel')
-
+const Carrinho  = require ('../../Modelos/carrinhoModel')
 class CarrinhoController{
     async create (req, res){
         try {
@@ -10,8 +10,11 @@ class CarrinhoController{
             const idProd = req.params.id
             console.log(idProd, "id prod");
             const produto = await Produtos.findById(idProd)
+            const carrinho = {
+                idProd: produto._id
+            }
             console.log(produto);
-            cliente.produtos.push(produto._id)
+            cliente.produtos.push(carrinho)
             await cliente.save()
             return res.status(201).json({message :"prod", produto})
         } catch (error) {

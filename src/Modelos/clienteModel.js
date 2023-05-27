@@ -1,7 +1,8 @@
 const mongoose = require ('mongoose');
 const uploadModel = require('./uploadModel');
 const Pet = require ('./petModel')
-const Produtos = require ('./produtoModel')
+
+const Carrinho = require ('./carrinhoModel')
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
@@ -23,10 +24,7 @@ const Cliente = new Schema(
   password: String,
   cpf: String,
   dependentes: [Pet],
-  produtos:[{
-    type:mongoose.Types.ObjectId,
-    ref:Produtos
-  }],
+  produtos:[Carrinho],
   foto:{
     ref: uploadModel,
     type:mongoose.Types.ObjectId
