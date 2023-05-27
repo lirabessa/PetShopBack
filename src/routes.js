@@ -3,11 +3,12 @@ const funcionarioController = require ('./Controllers/funcionario/funcionarioCon
 const clienteController = require ('./Controllers/cliente/clienteController');
 const login = require('./Controllers/login/loginController');
 const uploadController = require ('./Controllers/uploads/uploadsController')
-const upload = require ('./config/multer')
+const {upload, uploadDrive} = require ('./config/multer')
 const produtoController = require('./Controllers/produto/produtoController');
 const { authenticate } = require('./middleware');
 const petController = require ('./Controllers/cliente/pet/petController')
-const carrinhoController = require ('./Controllers/cliente/carrinhoCli')
+const carrinhoController = require ('./Controllers/produto/carrinhoCli');
+const fichaMedicaController = require('./Controllers/cliente/pet/fichaMedicaPet');
 
 const routes = Router();
 
@@ -36,6 +37,7 @@ routes.delete('/produto/:id' , produtoController.destroy)
 routes.put('/produto/:id' , produtoController.update)
 
 routes.post('/uploads', upload.single("File"), uploadController.create)
+routes.post('/drive', uploadDrive.single("File"), uploadController.createDrive)
 routes.get('/uploads' , uploadController.findAll)
 routes.delete('/uploads' , uploadController.remove)
 
@@ -47,5 +49,7 @@ routes.delete('/pet/:id', authenticate, petController.delete)
 routes.post('/carrinho/:id', authenticate, carrinhoController.create)
 routes.delete('/carrinho/:id', authenticate, carrinhoController.delete)
 routes.get('/carrinhos', authenticate, carrinhoController.find)
+
+routes.post ('/fichaMedica/:id', authenticate , fichaMedicaController.create)
 
 module.exports = routes;

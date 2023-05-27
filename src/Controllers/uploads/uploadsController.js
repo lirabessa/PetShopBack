@@ -3,6 +3,7 @@ const Picture = require("../../Modelos/uploadModel");
 const Cliente = require('../../Modelos/clienteModel')
 const Funcionario = require ('../../Modelos/funcionarioModel');
 const Pet = require("../../Modelos/petModel");
+const { sendFileFromDrive, verifyAndcreateFolderIfNotExist } = require("../../functions/Drive");
 
 exports.create = async (req, res) => {
   try {
@@ -13,13 +14,11 @@ exports.create = async (req, res) => {
       src: file.destination,
     });
     
-    
     const result = await picture.save();
     let target;
-    console.log(tipo);
+
     switch(tipo){
       case 'cliente': 
-      
         target = await Cliente.findById(id);
         break
       case 'funcionario':
@@ -62,3 +61,49 @@ exports.findAll = async (req, res) => {
     res.status(500).json({ message: "Imagens não encontrada :(." });
   }
 };
+
+
+exports.createDrive = async (req, res) => {
+  try{
+    const {name, tipo, id} = req.body;
+
+    const folderId = await verifyAndcreateFolderIfNotExist('PetLovers');
+    const file = req.file;
+    const [,ext] = file.originalname.split('.');
+    const fileName = `${Date.now()}.${ext}`;
+    const mimeType = file.mimetype;
+    const fileContent = file.buffer;
+    const response = await sendFileFromDrive(fileName, mimeType, fileContent, folderId);
+    const link = `https://drive.google.com/thumbnail?id=${response.data.id}`;
+
+    const picture = new Picture({
+      name:fileName, 
+      src: link
+    });
+
+    const result = await picture.save();
+    let target;
+
+    switch(tipo){
+      case 'cliente': 
+        target = await Cliente.findById(id);
+        break
+      case 'funcionario':
+        target = await Funcionario.findById(id);
+        break;
+      case 'pet':
+        target = await Pet.findById(id);
+        break;
+    }
+
+    console.log(target)
+
+    target.foto = result._id;
+    target.save();
+
+    res.json(picture);
+  }catch(error){
+    console.log(error)
+    res.status(500).json({ message: "Imagens não encontrada :(." });
+  }
+}
