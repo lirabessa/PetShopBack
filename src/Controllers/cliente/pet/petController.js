@@ -19,9 +19,11 @@ class PetController {
     async find (req, res){
         try {    
             const idCliente  = res.locals.jwtPayload._id
-            const cliente = await Clientes.findOne().populate('fichaMedica produtos foto').exec();  
+            const cliente = await Clientes.findOne({_id: idCliente}).populate('produtos foto').exec();  
+            console.log(cliente);
             return res.status(302).json(cliente.dependentes)
         } catch (error) {
+            console.log(error);
             res.status(500).json({ message: "Pet não encontrado :(" });
         }
     }
