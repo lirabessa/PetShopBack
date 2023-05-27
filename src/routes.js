@@ -41,6 +41,7 @@ routes.delete('/uploads' , uploadController.remove)
 
 routes.post('/pet' , authenticate, petController.create)
 routes.get('/pets', authenticate, petController.find)
+routes.put('/pet', petController.update)
 routes.delete('/pet/:id', authenticate, petController.delete)
 
 routes.post('/carrinho/:id', authenticate, carrinhoController.create)

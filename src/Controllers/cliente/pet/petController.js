@@ -27,6 +27,33 @@ class PetController {
         }
     }
 
+    async update(req, res){
+        try{
+            const {idCli, idPet, nome, raca} = req.body;
+            const usuario = await Clientes.findById(idCli)
+            if(!usuario){
+                throw "usuario não encontrado"
+            }
+            console.log(usuario)
+            usuario.dependentes.forEach(pet => {
+                if(pet._id == idPet){
+                    if(nome){
+                        pet.nomeDep = nome
+                    }
+                    if(raca){
+                        pet.raca = raca
+                    }
+                }
+            });
+
+            await usuario.save()
+            res.json(usuario)
+        }catch(error){
+            console.log(error)
+            res.status(500).json(error);
+        }
+    }
+
     async delete (req,res){
         try {
             const idCliente  = res.locals.jwtPayload._id
