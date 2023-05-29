@@ -7,7 +7,7 @@ const { OAuth2Client } = require("google-auth-library")
 const GOOGLE_DRIVE_CLIENT_ID = "782775168236-8ms2j7l3jbqknp2q50lau72ciikpro0b.apps.googleusercontent.com"
 const GOOGLE_DRIVE_CLIENT_SECRET = "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"
 const GOOGLE_DRIVE_REDIRECT_URI = "https://developers.google.com/oauthplayground"
-const GOOGLE_DRIVE_REFRESH_TOKEN = "4/0AbUR2VOzxfsXAB0E_vOC_eYefWqnEQ8RkO2zor59c4sBl65HfzKMEEHVZqs2oN6lETHl9A"
+const GOOGLE_DRIVE_REFRESH_TOKEN = "1//04IBcMJON1t3ICgYIARAAGAQSNwF-L9IraDPKMNU-bCzyHGKvzVHJcnzTueMOoQbD-uYcorxQ2ECM89h_aosyJ8ij2vlBWLVYEO4"
 
 
 const createDriveClient = (clientId, clientSecret, redirectUri, refreshToken) => {
@@ -51,6 +51,7 @@ const verifyAndcreateFolderIfNotExist = async (folderName) => {
 }
 
 const searchFolder = async (folderName) => {
+    console.log("***************************************************************************",searchFolder);
     try {
         const folders = await client.files.list({
                 q: `mimeType='application/vnd.google-apps.folder' and name='${folderName}' and trashed=false`,
@@ -58,7 +59,7 @@ const searchFolder = async (folderName) => {
         });
         return folders;
     } catch (error) {
-        console.error(`Erro ao buscar pasta ${folderName}:`, error);
+         console.error(`Erro ao buscar pasta ${folderName}:`, error);
         throw error;
     }
 };
