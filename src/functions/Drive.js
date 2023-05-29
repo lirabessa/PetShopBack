@@ -10,9 +10,6 @@ const GOOGLE_DRIVE_REDIRECT_URI = "https://developers.google.com/oauthplayground
 const GOOGLE_DRIVE_REFRESH_TOKEN = "4/0AbUR2VOzxfsXAB0E_vOC_eYefWqnEQ8RkO2zor59c4sBl65HfzKMEEHVZqs2oN6lETHl9A"
 
 
-
-
-
 const createDriveClient = (clientId, clientSecret, redirectUri, refreshToken) => {
     const client = new google.auth.OAuth2(clientId, clientSecret, redirectUri);
     client.setCredentials({ refresh_token: refreshToken });

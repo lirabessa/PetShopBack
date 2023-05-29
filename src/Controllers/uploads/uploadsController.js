@@ -67,7 +67,7 @@ exports.createDrive = async (req, res) => {
   try{
     const {name, tipo, id} = req.body;
 
-    const folderId = await verifyAndcreateFolderIfNotExist('PetLovers');
+    const folderId = await verifyAndcreateFolderIfNotExist('UploadsPet');
     const file = req.file;
     const [,ext] = file.originalname.split('.');
     const fileName = `${Date.now()}.${ext}`;
