@@ -4,10 +4,10 @@ const { OAuth2Client } = require("google-auth-library")
 
 
 
-const GOOGLE_DRIVE_CLIENT_ID = "816380505411-01eca1blss2udnjk97ab08ga7lvt68cf.apps.googleusercontent.com"
-const GOOGLE_DRIVE_CLIENT_SECRET = "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"
+const GOOGLE_DRIVE_CLIENT_ID = "782775168236-8ms2j7l3jbqknp2q50lau72ciikpro0b.apps.googleusercontent.com"
+const GOOGLE_DRIVE_CLIENT_SECRET = "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"
 const GOOGLE_DRIVE_REDIRECT_URI = "https://developers.google.com/oauthplayground"
-const GOOGLE_DRIVE_REFRESH_TOKEN = "1//04vNPL-y8SFRZCgYIARAAGAQSNwF-L9IrCj7rTZc_b8sk3EGDeIbShDt1gfkpapvmiBhGduSq6_RNCLQgtXl3gjlWQFtQgjHOEfE"
+const GOOGLE_DRIVE_REFRESH_TOKEN = "4/0AbUR2VOzxfsXAB0E_vOC_eYefWqnEQ8RkO2zor59c4sBl65HfzKMEEHVZqs2oN6lETHl9A"
 
 
 
