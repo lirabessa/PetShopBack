@@ -30,16 +30,16 @@ class PetController {
 
     async update(req, res){
         try{
-            const {idCli, idPet, nome, raca} = req.body;
+            const {idCli, idPet, nomeDep, raca} = req.body;
             const usuario = await Clientes.findById(idCli)
             if(!usuario){
                 throw "usuario não encontrado"
             }
-            console.log(usuario)
+            console.log('usuario', usuario)
             usuario.dependentes.forEach(pet => {
                 if(pet._id == idPet){
-                    if(nome){
-                        pet.nomeDep = nome
+                    if(nomeDep){
+                        pet.nomeDep = nomeDep
                     }
                     if(raca){
                         pet.raca = raca
