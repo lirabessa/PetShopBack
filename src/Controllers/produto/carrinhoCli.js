@@ -1,6 +1,8 @@
 const Produtos = require ('../../Modelos/produtoModel')
 const Clientes = require ('../../Modelos/clienteModel')
 const Carrinho  = require ('../../Modelos/carrinhoModel')
+
+
 class CarrinhoController{
     async create (req, res){
         try {

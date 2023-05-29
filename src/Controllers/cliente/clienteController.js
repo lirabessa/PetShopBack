@@ -15,7 +15,7 @@ class clienteController {
     async find (req, res){
 
         try {
-            const readCliente = await Cliente.find().populate('produtos').exec();
+            const readCliente = await Cliente.find().populate('foto').exec();
             return res.status(302).json({readCliente})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"})
