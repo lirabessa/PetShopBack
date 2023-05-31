@@ -28,6 +28,18 @@ class PetController {
         }
     }
 
+    async findOne (req, res){
+        try {
+            const{id} = req.params
+            const idCliente  = res.locals.jwtPayload._id
+            const cliente = await Clientes.findById({_id: idCliente}).populate('foto').exec();
+            const pet = cliente.dependentes.filter(pet => pet._id == id)[0]
+            return res.status(302).json(pet)  
+        } catch (error) {
+            res.status(404).json({message: "Não encontrado"})
+        }
+    }
+
     async update(req, res){
         try{
             const {idCli, idPet, nomeDep, raca} = req.body;
