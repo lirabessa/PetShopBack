@@ -50,6 +50,6 @@ routes.post('/carrinho/:id', authenticate, carrinhoController.create)
 routes.delete('/carrinho/:id', authenticate, carrinhoController.delete)
 routes.get('/carrinhos', authenticate, carrinhoController.find)
 
-routes.post ('/fichaMedica/:id', authenticate , fichaMedicaController.create)
-
+routes.post ('/fichamedica/:id', authenticate , fichaMedicaController.create)
+routes.get ('/fichamedica/:id', authenticate, fichaMedicaController.find)
 module.exports = routes;

@@ -14,10 +14,7 @@ const Pet = new Schema(
       ref: uploadModel,
       type:mongoose.Types.ObjectId
     },
-    fichaMedica: [{
-      type:mongoose.Types.ObjectId,
-      ref:FichaMedica
-    }]
+    fichaMedica:[FichaMedica]
   }
 );
 
