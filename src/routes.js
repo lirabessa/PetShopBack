@@ -46,6 +46,7 @@ routes.get('/pets', authenticate, petController.find)
 routes.get('/pet/:id', authenticate ,petController.findOne)
 routes.put('/pet', authenticate, petController.update)
 routes.delete('/pet/:id', authenticate, petController.delete)
+routes.delete('/pet/:id/:idCliente', authenticate, petController.delete)
 
 routes.post('/carrinho/:id', authenticate, carrinhoController.create)
 routes.delete('/carrinho/:id', authenticate, carrinhoController.delete)

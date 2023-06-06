@@ -65,7 +65,7 @@ exports.findAll = async (req, res) => {
 
 exports.createDrive = async (req, res) => {
   try{
-    const {name, tipo, id} = req.body;
+    const {name, tipo, id, idCliente} = req.body;
 
     const folderId = await verifyAndcreateFolderIfNotExist('UploadsPet');
     const file = req.file;
@@ -92,8 +92,8 @@ exports.createDrive = async (req, res) => {
         target = await Funcionario.findById(id);
         break;
       case 'pet':
-        const idCliente  = res.locals.jwtPayload._id
-        target = await Cliente.findById(idCliente)
+        const idCli = idCliente || res.locals.jwtPayload._id
+        target = await Cliente.findById(idCli)
         target.dependentes.forEach(p => {
           if(p._id == id){
             p.foto = picture

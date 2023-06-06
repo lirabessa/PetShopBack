@@ -4,7 +4,7 @@ const Pet = require ('../../../Modelos/petModel')
 class PetController {
     async create (req,res){
         try {
-            const idCliente  = res.locals.jwtPayload._id
+            const idCliente = req.body.idCli || res.locals.jwtPayload._id
             const cliente = await Clientes.findById(idCliente)
             cliente.dependentes.push(req.body)
             await cliente.save()
@@ -69,7 +69,7 @@ class PetController {
 
     async delete (req,res){
         try {
-            const idCliente  = res.locals.jwtPayload._id
+            const idCliente = req.params.idCliente || res.app.locals.jwtPayload._id
             const idPet = req.params.id
             const cliente = await Clientes.findById(idCliente)
             const pets = cliente.dependentes.filter(pet=> pet._id != idPet)

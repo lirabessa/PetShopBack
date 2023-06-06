@@ -26,7 +26,7 @@ class clienteController {
 
         try {
             const{id} = req.params
-            const readCliente = await Cliente.findOne({_id: id}).populate('produtos foto').exec(); 
+            const readCliente = await Cliente.findOne({_id: id}).populate('produtos foto').populate({path: 'dependentes', populate: {path: 'foto'}}).exec(); 
             return res.status(302).json({readCliente})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"})
