@@ -13,7 +13,7 @@ class funcionarioController {
     async findOne (req, res){
         try {
             const {id} =req.params;
-            const readFuncionario = await Funcionarios.findById(id);
+            const readFuncionario = await Funcionarios.findById(id).populate('foto').exec();
             return res.status(302).json({readFuncionario})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"}) 
@@ -23,7 +23,7 @@ class funcionarioController {
     async find (req, res){
 
         try {
-            const readFuncionarios = await Funcionarios.find();
+            const readFuncionarios = await Funcionarios.find().populate('foto').exec();
             return res.status(302).json({readFuncionarios})
         } catch (error) {
             res.status(404).json({message: "Não encontrado"}) 
