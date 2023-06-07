@@ -92,10 +92,10 @@ exports.createDrive = async (req, res) => {
         target = await Funcionario.findById(id);
         break;
       case 'pet':
-        const idCli = idCliente || res.locals.jwtPayload._id
+        const idCli = idCliente || res.app.locals.jwtPayload._id
         target = await Cliente.findById(idCli)
         target.dependentes.forEach(p => {
-          if(p._id == id){
+          if(p._id.toString() == id){
             p.foto = picture
           }
         });

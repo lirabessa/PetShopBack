@@ -18,9 +18,8 @@ class PetController {
 
     async find (req, res){
         try {    
-            const idCliente  = res.locals.jwtPayload._id
-            const cliente = await Clientes.findOne({_id: idCliente}).populate('foto dependentes.fichaMedica').exec();  
-            console.log(cliente);
+            const idCliente  = res.app.locals.jwtPayload._id
+            const cliente = await Clientes.findOne({_id: idCliente}).populate('foto dependentes.fichaMedica dependentes.foto').exec();
             return res.status(302).json(cliente.dependentes)
         } catch (error) {
             console.log(error);
@@ -32,7 +31,7 @@ class PetController {
         try {
             const{id} = req.params
             const idCliente  = res.locals.jwtPayload._id
-            const cliente = await Clientes.findById({_id: idCliente}).populate('foto').exec();
+            const cliente = await Clientes.findById({_id: idCliente}).populate('foto dependentes.foto').exec();
             const pet = cliente.dependentes.filter(pet => pet._id == id)[0]
             return res.status(302).json(pet)  
         } catch (error) {

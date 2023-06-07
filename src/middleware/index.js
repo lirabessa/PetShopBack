@@ -24,7 +24,7 @@ const authenticate = async (req, res, next) => {
     
         const decoded = jwt.verify(token, JWT_SECRET);
        
-        res.locals.jwtPayload = decoded;
+        res.app.locals.jwtPayload = decoded;
     } catch (error) {
         res.status(401).send({ error: UNAUTHORIZED_ERROR_MESSAGE });
     }
