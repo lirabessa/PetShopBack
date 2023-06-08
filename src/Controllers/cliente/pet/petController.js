@@ -4,14 +4,12 @@ const Pet = require ('../../../Modelos/petModel')
 class PetController {
     async create (req,res){
         try {
-            const idCliente = req.body.idCli || res.locals.jwtPayload._id
+            const idCliente = req.body.idCli || res.app.locals.jwtPayload._id
             const cliente = await Clientes.findById(idCliente)
             cliente.dependentes.push(req.body)
             await cliente.save()
-            console.log(cliente);
             return res.status(201).json({message :"Pet", cliente})
         } catch (error) {
-            console.log(error);
             res.status(500).json({message: "erro"})
         }
     }

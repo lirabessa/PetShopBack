@@ -53,5 +53,8 @@ routes.delete('/carrinho/:id', authenticate, carrinhoController.delete)
 routes.get('/carrinhos', authenticate, carrinhoController.find)
 
 routes.post ('/fichamedica/:id', authenticate , fichaMedicaController.create)
+routes.post ('/fichamedica/:id/:idCliente', authenticate , fichaMedicaController.create)
 routes.get ('/fichamedica/:id', authenticate, fichaMedicaController.find)
+routes.get ('/fichamedica/:id/:idCliente', authenticate, fichaMedicaController.find)
+routes.delete('/fichamedica/:id', authenticate, fichaMedicaController.delete)
 module.exports = routes;
