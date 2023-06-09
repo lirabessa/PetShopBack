@@ -6,7 +6,7 @@ const Carrinho  = require ('../../Modelos/carrinhoModel')
 class CarrinhoController{
     async create (req, res){
         try {
-            const idCliente = res.locals.jwtPayload._id
+            const idCliente = res.app.locals.jwtPayload._id
             const cliente = await Clientes.findById(idCliente)
             console.log(cliente);
             const idProd = req.params.id
@@ -27,10 +27,10 @@ class CarrinhoController{
 
     async delete (req,res){
         try {
-            const idCliente  = res.locals.jwtPayload._id
+            const idCliente  = res.app.locals.jwtPayload._id
             const idProd = req.params.id
             const cliente = await Clientes.findById(idCliente)
-            const prods = cliente.produtos.filter(prod=> prod._id != idProd)
+            const prods = cliente.produtos.filter(prod=> prod.idProd.toString() != idProd)
             cliente.produtos = prods
             await cliente.save()
             return res.json(prods)
@@ -41,9 +41,9 @@ class CarrinhoController{
 
     async find (req, res){
         try {    
-            const idCliente  = res.locals.jwtPayload._id
-            const cliente = await Clientes.findById(idCliente).populate('produtos').exec(); 
-            return res.status(302).json(cliente.produtos)
+            const idCliente  = res.app.locals.jwtPayload._id
+            const cliente = await Clientes.findById(idCliente).populate('produtos produtos.idProd').exec(); 
+            return res.status(200).json(cliente.produtos)
         } catch (error) {
             res.status(500).json({ message: "Produto não encontrado :(" });
         }
