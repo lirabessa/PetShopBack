@@ -40,7 +40,7 @@ class PetController {
     async update(req, res){
         try{
             const {idCli, idPet, nomeDep, raca} = req.body;
-            const usuario = await Clientes.findById(idCli)
+            const usuario = await Clientes.findById(idCli).populate('dependentes dependentes.foto')
             if(!usuario){
                 throw "usuario não encontrado"
             }
